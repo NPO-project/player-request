@@ -23,18 +23,23 @@ function main() {
     var requester = {
         gui: {
             initialize: function () {
-                requester.debugging.log('Initializing the interface class...');
                 this.area = $('td#content_value>table:eq(0)>tbody:eq(0)>tr:eq(0)>td:eq(1)');
+                requester.debugging.log('Initialized the interface class');
             },
             area: null
         },
         debugging: {
+            initialize: function () {
+                requester.gui.area.append('<table class="vis"><tbody><tr><th>NPO-Debug</th><td id="requester_debug"></td></tr></tbody></table>');
+                requester.debugging.log('Initialized the debugging class');
+            },
             log: function (text) {
                 console.log(text);
+                $('#requester_debug').text(text);
             }
         }
     };
-    requester.debugging.log('Started the ambassador script');
+    requester.debugging.initialize();
     requester.gui.initialize();
     requester.debugging.log('Fully initialized the script');
 };
