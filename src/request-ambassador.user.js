@@ -32,6 +32,10 @@ function main() {
             requestButton: {
                 initialize: function () {
                     requester.gui.area.append('<table class="vis"><tbody><tr><th>NPO-Request</th><td><form><input type="button" id="requester_button" value="Vraag aan" /></form></td></tr></tbody></table>');
+                    $('#requester_button').click(requester.gui.requestButton.onClick);
+                },
+                onClick: function () {
+                    requester.debugging.log('The request button got pressed.');
                 }
             }
         },
