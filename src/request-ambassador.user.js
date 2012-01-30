@@ -25,13 +25,22 @@ function main() {
             initialize: function () {
                 this.area = $('td#content_value>table:eq(0)>tbody:eq(0)>tr:eq(0)>td:eq(1)');
                 requester.debugging.log('Initialized the interface class');
+                requester.debugging.initializeDebugGui();
+                requester.gui.requestButton.initialize();
             },
-            area: null
+            area: null,
+            requestButton: {
+                initialize: function () {
+                    requester.gui.area.append('<table class="vis"><tbody><tr><th>NPO-Request</th><td><form><input type="button" id="requester_button" value="Vraag aan" /></form></td></tr></tbody></table>');
+                }
+            }
         },
         debugging: {
             initialize: function () {
-                requester.gui.area.append('<table class="vis"><tbody><tr><th>NPO-Debug</th><td id="requester_debug"></td></tr></tbody></table>');
                 requester.debugging.log('Initialized the debugging class');
+            },
+            initializeDebugGui: function () {
+                requester.gui.area.append('<table class="vis"><tbody><tr><th>NPO-Debug</th><td id="requester_debug"></td></tr></tbody></table>');
             },
             log: function (text) {
                 console.log(text);
