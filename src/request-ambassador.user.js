@@ -36,6 +36,11 @@ function main() {
                 },
                 onClick: function () {
                     requester.debugging.log('The request button got pressed.');
+                    requester.dao.freeAmbassador(requester.gui.requestButton.onData);
+                },
+                onData: function(name) {
+                    $('input[name|="sitter"]').val(name);
+                    requester.debugging.log('Ambassador set to \'' + name + '\'.');
                 }
             }
         },
@@ -49,6 +54,12 @@ function main() {
             log: function (text) {
                 console.log(text);
                 $('#requester_debug').text(text);
+            }
+        },
+        dao: {
+            freeAmbassador: function (callback) {
+                requester.debugging.log('Searching for a available ambassador...');
+                callback('Some user');
             }
         }
     };
